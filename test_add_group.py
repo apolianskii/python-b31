@@ -43,7 +43,6 @@ class test_add_group(unittest.TestCase):
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def log_out(self, wd):
-        # log out
         wd.find_element_by_link_text("Logout").click()
 
     def open_groups_page(self, wd):
