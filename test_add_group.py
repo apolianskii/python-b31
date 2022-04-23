@@ -11,9 +11,17 @@ class test_add_group(unittest.TestCase):
     
     def test_add_group(self):
         wd = self.wd
-        # open home page
+        self.open_home_page(wd)
+        self.log_in(wd)
+        self.open_groups_page(wd)
+        self.create_group(wd)
+        self.open_groups_page_after_creation(wd)
+        self.log_out(wd)
+
+    def open_home_page(self, wd):
         wd.get("http://localhost/addressbook/")
-        # log in
+
+    def log_in(self, wd):
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -21,8 +29,18 @@ class test_add_group(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("//input[@value='Login']").click()
-        # open groups page
+
+    def log_out(self, wd):
+        # log out
+        wd.find_element_by_link_text("Logout").click()
+
+    def open_groups_page(self, wd):
         wd.find_element_by_link_text("groups").click()
+
+    def open_groups_page_after_creation(self, wd):
+        wd.find_element_by_link_text("group page").click()
+
+    def create_group(self, wd):
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
@@ -37,11 +55,7 @@ class test_add_group(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys("Test")
         # submit group creation
         wd.find_element_by_name("submit").click()
-        # return to groups page
-        wd.find_element_by_link_text("group page").click()
-        # log out
-        wd.find_element_by_link_text("Logout").click()
-    
+
     def is_element_present(self, how, what):
         try: self.wd.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
