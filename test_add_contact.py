@@ -12,7 +12,9 @@ class test_add_contact(unittest.TestCase):
 
     def test_add_contact(self):
         driver = self.driver
+        # open home page
         driver.get("http://localhost/addressbook/")
+        # log in
         driver.find_element_by_name("user").click()
         driver.find_element_by_name("user").clear()
         driver.find_element_by_name("user").send_keys("admin")
@@ -20,7 +22,9 @@ class test_add_contact(unittest.TestCase):
         driver.find_element_by_name("pass").clear()
         driver.find_element_by_name("pass").send_keys("secret")
         driver.find_element_by_xpath("//input[@value='Login']").click()
+        # init contact creation
         driver.find_element_by_link_text("add new").click()
+        # fill contact form
         driver.find_element_by_name("firstname").click()
         driver.find_element_by_name("firstname").clear()
         driver.find_element_by_name("firstname").send_keys("George")
@@ -96,8 +100,11 @@ class test_add_contact(unittest.TestCase):
         driver.find_element_by_name("notes").clear()
         driver.find_element_by_name("notes").send_keys(
             "This contact was created by an automated Python test! ")
+        # submit contact creation
         driver.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # return to contacts page
         driver.find_element_by_link_text("home page").click()
+        # log out
         driver.find_element_by_link_text("Logout").click()
 
     def is_element_present(self, how, what):
