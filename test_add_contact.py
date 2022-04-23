@@ -22,6 +22,8 @@ class test_add_contact(unittest.TestCase):
         driver.find_element_by_name("pass").clear()
         driver.find_element_by_name("pass").send_keys("secret")
         driver.find_element_by_xpath("//input[@value='Login']").click()
+        # open contacts page
+        driver.find_element_by_link_text("home").click()
         # init contact creation
         driver.find_element_by_link_text("add new").click()
         # fill contact form
