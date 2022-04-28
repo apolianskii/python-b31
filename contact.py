@@ -1,0 +1,23 @@
+class Contact:
+
+    def __init__(self):
+        self.first_name = ""
+        self.middle_name = ""
+        self.last_name = ""
+        self.nickname = ""
+        self.title = ""
+        self.company_name = ""
+        self.address = ""
+        self.home_phone = ""
+        self.mobile_phone = ""
+        self.work_phone = ""
+        self.fax_phone = ""
+        self.email = ""
+        self.email_2 = ""
+        self.email_3 = ""
+        self.homepage = ""
+        self.birthday = ""
+        self.anniversary = ""
+        self.address_secondary = ""
+        self.home_phone_secondary = ""
+        self.notes = ""
