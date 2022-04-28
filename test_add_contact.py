@@ -13,7 +13,7 @@ class test_add_contact(unittest.TestCase):
     def test_add_contact(self):
         driver = self.driver
         self.open_home_page(driver)
-        self.log_in(driver)
+        self.log_in(driver, username="admin", password="secret")
         self.open_contacts_page(driver)
         self.create_contact(driver)
         self.open_contacts_page_after_creation(driver)
@@ -22,13 +22,13 @@ class test_add_contact(unittest.TestCase):
     def open_home_page(self, driver):
         driver.get("http://localhost/addressbook/")
 
-    def log_in(self, driver):
+    def log_in(self, driver, username, password):
         driver.find_element_by_name("user").click()
         driver.find_element_by_name("user").clear()
-        driver.find_element_by_name("user").send_keys("admin")
+        driver.find_element_by_name("user").send_keys(username)
         driver.find_element_by_name("pass").click()
         driver.find_element_by_name("pass").clear()
-        driver.find_element_by_name("pass").send_keys("secret")
+        driver.find_element_by_name("pass").send_keys(password)
         driver.find_element_by_xpath("//input[@value='Login']").click()
 
     def log_out(self, driver):
