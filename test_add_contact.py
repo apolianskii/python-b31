@@ -144,7 +144,7 @@ class test_add_contact(unittest.TestCase):
         driver.find_element_by_name("notes").send_keys(
             "This contact was created by an automated Python test! ")
         # submit contact creation
-        driver.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        driver.find_element_by_name("submit").click()
 
     def is_element_present(self, how, what):
         try:
