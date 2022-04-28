@@ -25,7 +25,7 @@ def get_filled_contact():
     contact.email_2 = "contact2@brighthouse.qa"
     contact.email_3 = "contact3@brighthouse.qa"
     contact.homepage = "https://www.brighthouse.qa"
-    contact.birthday = datetime.date
+    contact.birthday = datetime.date(year=1992, month=8, day=31)
     contact.anniversary = datetime.date(year=2012, month=12, day=1)
     contact.address_secondary = \
         "QA Department of Python, Office of Inspector General, DEV-62, 1800 Moore Law Street, Arlington, VA 22209"
