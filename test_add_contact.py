@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 import unittest
 
@@ -90,19 +89,15 @@ class test_add_contact(unittest.TestCase):
         driver.find_element_by_name("homepage").clear()
         driver.find_element_by_name("homepage").send_keys("https://www.brighthouse.qa")
         driver.find_element_by_name("bday").click()
-        Select(driver.find_element_by_name("bday")).select_by_visible_text("23")
         driver.find_element_by_xpath("//option[@value='23']").click()
         driver.find_element_by_name("bmonth").click()
-        Select(driver.find_element_by_name("bmonth")).select_by_visible_text("April")
         driver.find_element_by_xpath("//option[@value='April']").click()
         driver.find_element_by_name("byear").click()
         driver.find_element_by_name("byear").clear()
         driver.find_element_by_name("byear").send_keys("2002")
         driver.find_element_by_name("aday").click()
-        Select(driver.find_element_by_name("aday")).select_by_visible_text("23")
         driver.find_element_by_xpath("//div[@id='content']/form/select[3]/option[25]").click()
         driver.find_element_by_name("amonth").click()
-        Select(driver.find_element_by_name("amonth")).select_by_visible_text("April")
         driver.find_element_by_xpath("//div[@id='content']/form/select[4]/option[5]").click()
         driver.find_element_by_name("ayear").click()
         driver.find_element_by_name("ayear").clear()
