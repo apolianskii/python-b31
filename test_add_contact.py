@@ -2,7 +2,7 @@
 import datetime
 import pytest
 
-from application import Application
+from fixture.application import Application
 from model.contact import Contact
 
 
