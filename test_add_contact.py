@@ -1,9 +1,23 @@
 # -*- coding: utf-8 -*-
 import datetime
-import unittest
+import pytest
 
 from application import Application
 from contact import Contact
+
+
+@pytest.fixture
+def app(request):
+    fixture = Application()
+    request.addfinalizer(fixture.destroy)
+    return fixture
+
+
+def test_add_contact(app):
+    app.log_in(username="admin", password="secret")
+    app.create_contact(get_filled_contact())
+    app.log_out()
+
 
 def get_filled_contact():
     contact = Contact()
@@ -29,18 +43,3 @@ def get_filled_contact():
     contact.home_phone_secondary = "555-098-1234"
     contact.notes = "This contact was created by an automated Python test!"
     return contact
-
-class test_add_contact(unittest.TestCase):
-    def setUp(self):
-        self.app = Application()
-
-    def test_add_contact(self):
-        self.app.log_in(username="admin", password="secret")
-        self.app.create_contact(get_filled_contact())
-        self.app.log_out()
-
-    def tearDown(self):
-        self.app.destroy()
-
-if __name__ == "__main__":
-    unittest.main()
