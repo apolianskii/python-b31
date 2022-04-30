@@ -2,7 +2,7 @@
 import pytest
 
 from application import Application
-from group import Group
+from model.group import Group
 
 
 @pytest.fixture
