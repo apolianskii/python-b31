@@ -1,5 +1,3 @@
-import locale
-
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
@@ -11,7 +9,6 @@ from fixture.session import SessionHelper
 class Application:
 
     def __init__(self):
-        locale.setlocale(locale.LC_ALL, 'en_US')
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
         self.contact = ContactHelper(self)
@@ -31,4 +28,3 @@ class Application:
 
     def destroy(self):
         self.wd.quit()
-        locale.setlocale(locale.LC_ALL, '')

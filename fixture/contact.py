@@ -1,3 +1,6 @@
+from fixture.date import DateHelper
+
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -13,8 +16,11 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd
-        self.open_contacts_page()
+        # prepare dates
+        anniversary = DateHelper(contact.anniversary)
+        birthday = DateHelper(contact.birthday)
         # init contact creation
+        self.open_contacts_page()
         wd.find_element_by_link_text("add new").click()
         # fill contact form
         wd.find_element_by_name("firstname").click()
@@ -64,22 +70,22 @@ class ContactHelper:
         wd.find_element_by_name("homepage").send_keys(contact.homepage)
         wd.find_element_by_name("bday").click()
         wd.find_element_by_xpath("//select[@name='bday']/option[@value='{}']".format(
-            str(contact.birthday.day))).click()
+            birthday.day_value)).click()
         wd.find_element_by_name("bmonth").click()
         wd.find_element_by_xpath("//select[@name='bmonth']/option[@value='{}']".format(
-            contact.birthday.strftime("%B"))).click()
+            birthday.month_value)).click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(str(contact.birthday.year))
+        wd.find_element_by_name("byear").send_keys(birthday.year_value)
         wd.find_element_by_name("aday").click()
         wd.find_element_by_xpath("//select[@name='aday']/option[@value='{}']".format(
-            str(contact.anniversary.day))).click()
+            anniversary.day_value)).click()
         wd.find_element_by_name("amonth").click()
         wd.find_element_by_xpath("//select[@name='amonth']/option[@value='{}']".format(
-            contact.anniversary.strftime("%B"))).click()
+            anniversary.month_value)).click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(str(contact.anniversary.year))
+        wd.find_element_by_name("ayear").send_keys(anniversary.year_value)
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
         wd.find_element_by_name("address2").send_keys(contact.address_secondary)
